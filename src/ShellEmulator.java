@@ -5,23 +5,27 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class ShellEmulator {
+    private final VFS vfs;
     private final String vfsPath;
     private final String scriptPath;
-    private final String vfsName;
     private boolean running;
-    
+
     public ShellEmulator(String vfsPath, String scriptPath) {
+        this.vfs = new VFS();
         this.vfsPath = vfsPath;
         this.scriptPath = scriptPath;
-        this.vfsName = "default_vfs";
         this.running = true;
+
+        if (vfsPath != null && !vfsPath.isEmpty()) {
+            this.vfs.loadFromXml(vfsPath);
+        }
     }
 
     public void printDebugInfo() {
         System.out.println("=== Debug Configuration ===");
         System.out.println("VFS Path: " + vfsPath);
         System.out.println("Script Path: " + scriptPath);
-        System.out.println("VFS Name: " + vfsName);
+        System.out.println("VFS Name: " + vfs.getVFSname());
         System.out.println("===========================");
     }
 
@@ -63,7 +67,7 @@ public class ShellEmulator {
                 if (trimmed.isEmpty() || trimmed.startsWith("//") || trimmed.startsWith("#")) {
                     continue;
                 }
-                System.out.println(vfs.get_vfsname() + "> " + trimmed);
+                System.out.println(vfs.getVFSname() + "> " + trimmed);
                 String[] tokens = parseCommand(trimmed);
                 executeCommand(tokens);
             }
@@ -75,7 +79,7 @@ public class ShellEmulator {
     public void repl() {
         Scanner scanner = new Scanner(System.in);
         while (running) {
-            System.out.print(vfs.get_vfsname() + "> ");
+            System.out.print(vfs.getVFSname() + "> ");
             if (!scanner.hasNextLine()) {
                 break;
             }
@@ -85,3 +89,4 @@ public class ShellEmulator {
         }
     }
 }
+
