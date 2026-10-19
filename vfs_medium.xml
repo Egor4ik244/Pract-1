@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vfs name="medium_vfs">
+    <dir name="home">
+        <file name="user.txt" encoding="test">User Data</file>
+    </dir>
+    <file name="config.cfg" encoding="text">Setting=1</file>
+</vfs>

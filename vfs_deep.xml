@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vfs name="deep_vfs">
+    <dir name="level1">
+        <dir name="level2">
+            <dir name="level3">
+                <file name="secret.txt" encoding="base64">U2VjcmVORGFOYQ==</file>
+            </dir>
+        </dir>
+    </dir>
+</vfs>
