@@ -9,7 +9,7 @@ public class TestEmulator {
     }
 
     private static void testParseCommand() {
-        ShellEmulator emulator = new ShellEmulator();
+        ShellEmulator emulator = new ShellEmulator(null, null);
         String[] tokens = emulator.parseCommand("ls -la /home");
         if (tokens.length != 3 || !"ls".equals(tokens[0])) {
             throw new RuntimeException("testParseComand failed");
