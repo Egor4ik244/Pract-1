@@ -1,0 +1,3 @@
+ls -la /home
+cd level1
+exit
